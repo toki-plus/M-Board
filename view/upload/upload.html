@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Upload</title>
+    <link rel="icon" href="./assets/img/upload.svg" type="image/x-icon" />
+    <?php include("./view/common/link.html");?>
+</head>
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <?php include("./view/common/header.html");?>
+
+
+        <div class="content-wrapper">
+            <div class="content-header">
+                <div class="container">
+                    <div class="login-box" style="margin: 240px auto">
+                        <div class="card card-primary">
+                            <div class="card-body">
+
+                                <!-- form start -->
+                                <!-- action 表示提交后传到哪里去处理数据 -->
+                                <!-- enctype 表示上传数据的编码类型 -->
+                                <form method="post" enctype="multipart/form-data" onsubmit="return checkFile()">
+
+                                    <!-- 文件上传 start -->
+                                    <label for="input-file">File input</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="uploadfile" class="custom-file-input" id="input-file">
+                                            <label class="custom-file-label" for="input-file" id="display-name">Choose file</label>
+                                        </div>
+
+                                        <div class="input-group-append">
+                                            <button type="submit" name="upload" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                    <!-- 文件上传 end -->
+
+                                    <!-- 图片预览 start -->
+                                    <br><label>Current Avatar</label>
+                                    <div id="preview-img">
+                                        <?php echo '<img src="' . $_SESSION['user_info']['u_pic'] . '" width="100px">';?>
+                                    </div>
+                                    <!-- 图片预览 end -->
+
+                                </form>
+                                <!-- form end -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <?php include("./view/common/footer.html"); ?>
+    </div>
+    <?php include("./view/common/script.html"); ?>
+</body>
+
+<script type="text/javascript">
+    // const UPLOAD_PATH = "./assets/img/upload";
+    var upload_file = document.getElementById("input-file");
+
+    upload_file.onchange = function() {
+        // 获取上传的文件名写入表单框
+        var fake_path = upload_file.value;
+        var file_name = fake_path.replace("C:\\fakepath\\", "");
+        document.getElementById("display-name").innerHTML = file_name;
+
+        // 图片预览
+        var preview = document.querySelector("#preview-img");
+        var file = document.querySelector("#input-file").files[0];
+        var reader = new FileReader();
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.innerHTML = '';
+        }
+        // <img src="" width="100px">
+        reader.onloadend = function() {
+            var result = "<br><img src='" + reader.result + "' width='100px'>";
+            preview.innerHTML = result;
+        }
+    }
+
+    function checkFile() {
+        var fake_path = upload_file.value;
+        if (fake_path == null || fake_path == "") {
+            alert("请选择要上传的文件!");
+            return false;
+        }
+        // 定义允许上传的文件类型
+        var allow_ext = ".jpg|.png|.gif";
+        // 提取上传文件的类型
+        var ext_name = fake_path.substring(fake_path.lastIndexOf("."));
+        // 判断上传文件类型是否允许上传
+        if (allow_ext.indexOf(ext_name) == -1) {
+            var error_massage = "请上传" + allow_ext + "类型的文件！";
+            alert(error_massage);
+            return false;
+        }
+    }
+</script>
+
+</html>

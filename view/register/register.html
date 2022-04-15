@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>注册页</title>
+
+    <link rel="icon" href="./assets/img/register.svg" type="image/x-icon" />
+    <?php include("./view/common/link.html");?>
+</head>
+<style>
+    .login-box,
+    .register-box {
+        margin: 120px auto;
+    }
+</style>
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <?php include("./view/common/header.html");?>
+        <!-- Content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container">
+
+
+                    <div class="register-box" style="margin: 200px auto">
+                        <div class="card">
+                            <div class="card-body register-card-body">
+                                <p class="login-box-msg">注册一个新的账号</p>
+
+                                <form action="" method="post">
+                                    <label>Register</label>
+
+                                    <!-- 账号 start -->
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="username" class="form-control" placeholder="Name">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-user"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 账号 end -->
+
+                                    <!-- 密码 start -->
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="password" class="form-control" placeholder="Password">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 密码 end -->
+
+                                    <!-- 确认密码 start -->
+                                    <div class="input-group mb-3">
+                                        <input type="password" name="repassword" class="form-control" placeholder="Retype password">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="fas fa-lock"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- 确认密码 end -->
+
+                                    <div class="row">
+
+                                        <!-- 我同意 start -->
+                                        <div class="col-8">
+                                            <div class="icheck-primary">
+                                                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                                <label for="agreeTerms">我同意</label>
+                                            </div>
+                                        </div>
+                                        <!-- 我同意 end -->
+
+                                        <!-- 提交 start -->
+                                        <div class="col-4">
+                                            <button type="submit" name="register" class="btn btn-primary btn-block">注册</button>
+                                        </div>
+                                        <!-- 提交 end -->
+                                    </div>
+                                </form>
+
+                                <a href="./login.php" class="text-center">已有账号？去登陆！</a>
+                            </div>
+                            <!-- /.form-box -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <!-- /.register-box -->
+
+
+                </div>
+            </div>
+        </div>
+        <?php include("./view/common/footer.html"); ?>
+    </div>
+    <?php include("./view/common/script.html"); ?>
+</body>
+
+</html>
